@@ -1,7 +1,15 @@
 package com.spring.biblio.entities;
 
-import jakarta.persistence.*;
-import java.time.LocalTime;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+// Supprimer l'import java.time.LocalTime;
 
 @Entity
 @Table(name = "quota")
@@ -11,49 +19,50 @@ public class Quota {
     @Column(name = "id_quota")
     private Long idQuota;
 
+    // Renommé pour la clarté, correspond à la colonne nbr_max
     @Column(name = "nbr_max", nullable = false)
-    private Integer nbrMax;
+    private Integer nombreMaxEmprunt;
 
+    // --- CORRECTION MAJEURE ICI ---
+    // 'duree_max' doit représenter un nombre de jours, donc un Integer.
+    // L'utilisation de LocalTime est incorrecte pour une durée.
     @Column(name = "duree_max")
-    private LocalTime dureeMax;
+    private Integer dureePretJours;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) // LAZY est une meilleure pratique
     @JoinColumn(name = "id_type_adh", nullable = false)
     private TypeAdherent typeAdherent;
 
-    // Constructeurs
+    // Constructeurs, Getters et Setters mis à jour...
+
     public Quota() {
     }
 
-    public Quota(Integer nbrMax, LocalTime dureeMax, TypeAdherent typeAdherent) {
-        this.nbrMax = nbrMax;
-        this.dureeMax = dureeMax;
-        this.typeAdherent = typeAdherent;
+    // Getter pour le nombre max
+    public Integer getNombreMaxEmprunt() {
+        return nombreMaxEmprunt;
     }
 
-    // Getters et Setters
+    public void setNombreMaxEmprunt(Integer nombreMaxEmprunt) {
+        this.nombreMaxEmprunt = nombreMaxEmprunt;
+    }
+
+    // Getter pour la durée
+    public Integer getDureePretJours() {
+        return dureePretJours;
+    }
+
+    public void setDureePretJours(Integer dureePretJours) {
+        this.dureePretJours = dureePretJours;
+    }
+
+    // Autres getters et setters
     public Long getIdQuota() {
         return idQuota;
     }
 
     public void setIdQuota(Long idQuota) {
         this.idQuota = idQuota;
-    }
-
-    public Integer getNbrMax() {
-        return nbrMax;
-    }
-
-    public void setNbrMax(Integer nbrMax) {
-        this.nbrMax = nbrMax;
-    }
-
-    public LocalTime getDureeMax() {
-        return dureeMax;
-    }
-
-    public void setDureeMax(LocalTime dureeMax) {
-        this.dureeMax = dureeMax;
     }
 
     public TypeAdherent getTypeAdherent() {

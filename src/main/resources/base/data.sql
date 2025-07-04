@@ -591,3 +591,48 @@ VALUES (
     '1 Rue de la Paix, 75001 Paris',
     1  -- 1 pour Administrateur
 );
+
+
+
+
+ALTER TABLE quota 
+ALTER COLUMN duree_max TYPE INTEGER 
+USING 0;
+
+
+
+-- 1. Quota pour les "Étudiants"
+-- Règle : 5 livres pour 21 jours (3 semaines)
+INSERT INTO quota (id_type_adh, nbr_max, duree_max) 
+VALUES (
+    (SELECT id_type_adh FROM type_adherent WHERE nom_type = 'Etudiant'), 
+    5, 
+    21
+);
+
+-- 2. Quota pour les "Enseignants"
+-- Règle : 15 livres pour 60 jours (2 mois)
+INSERT INTO quota (id_type_adh, nbr_max, duree_max) 
+VALUES (
+    (SELECT id_type_adh FROM type_adherent WHERE nom_type = 'Enseignant'), 
+    15, 
+    60
+);
+
+-- 3. Quota pour le "Personnel"
+-- Règle : 10 livres pour 30 jours (1 mois)
+INSERT INTO quota (id_type_adh, nbr_max, duree_max) 
+VALUES (
+    (SELECT id_type_adh FROM type_adherent WHERE nom_type = 'Personnel'), 
+    10, 
+    30
+);
+
+-- 4. Quota pour le "Public"
+-- Règle : 3 livres pour 14 jours (2 semaines)
+INSERT INTO quota (id_type_adh, nbr_max, duree_max) 
+VALUES (
+    (SELECT id_type_adh FROM type_adherent WHERE nom_type = 'Public'), 
+    3, 
+    14
+);

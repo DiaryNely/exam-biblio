@@ -24,7 +24,7 @@
                         <a class="nav-link ${pageContext.request.servletPath.contains('/catalogue') ? 'active' : ''}" href="${pageContext.request.contextPath}/catalogue">Catalogue</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ${pageContext.request.servletPath.contains('/emprunts') ? 'active' : ''}" href="${pageContext.request.contextPath}/emprunts">Mes Emprunts</a>
+                        <a class="nav-link ${pageContext.request.servletPath.contains('/prets/nouveau') ? 'active' : ''}" href="${pageContext.request.contextPath}/prets/nouveau">Mes Emprunts</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ${pageContext.request.servletPath.contains('/abonnements') ? 'active' : ''}" href="${pageContext.request.contextPath}/abonnements">Abonnements</a>
