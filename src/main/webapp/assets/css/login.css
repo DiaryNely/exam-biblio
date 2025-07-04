@@ -1,0 +1,289 @@
+/* --- Importation de la police --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- Variables de couleur pour une personnalisation facile --- */
+:root {
+    --primary-color: #007bff;
+    --primary-color-hover: #0056b3;
+    --secondary-color: #6c757d;
+    --background-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --label-color: #495057;
+    --border-color: #ced4da;
+    --border-focus-color: #80bdff;
+    --error-bg: #f8d7da;
+    --error-text: #721c24;
+    --error-border: #f5c6cb;
+    --light-gray: #adb5bd;
+}
+
+/* --- Styles globaux --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* --- Conteneur principal --- */
+.login-container {
+    background-color: var(--container-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* --- Section Logo et Titre --- */
+.logo-section {
+    margin-bottom: 30px;
+}
+
+.logo-section .logo {
+    font-size: 50px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.logo-section .title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.logo-section .subtitle {
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+
+/* --- Message d'erreur --- */
+.error-message {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid var(--error-border);
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.error-message i {
+    margin-right: 10px;
+}
+
+/* --- Formulaire --- */
+#loginForm {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--label-color);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px 12px 45px; /* Espace pour l'icône */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control::placeholder {
+    color: var(--light-gray);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--border-focus-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--light-gray);
+    transition: color 0.3s ease;
+}
+
+.form-control:focus + i {
+    color: var(--primary-color);
+}
+
+/* --- Bouton de connexion --- */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background: var(--primary-color-hover);
+}
+
+.btn-login:active {
+    transform: scale(0.98);
+}
+
+/* Style pour l'état de chargement */
+.btn-login .loading {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color-hover);
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-login.is-loading .loading {
+    display: flex;
+}
+
+.btn-login.is-loading .btn-text {
+    visibility: hidden;
+}
+
+.btn-login.is-loading {
+    cursor: not-allowed;
+}
+
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 3px solid #fff;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Lien "Mot de passe oublié" --- */
+.forgot-password {
+    text-align: right;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.forgot-password a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+    color: var(--primary-color-hover);
+}
+
+/* --- Séparateur --- */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.divider:not(:empty)::before {
+    margin-right: 1em;
+}
+
+.divider:not(:empty)::after {
+    margin-left: 1em;
+}
+
+/* --- Section des fonctionnalités --- */
+.features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    text-align: left;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--label-color);
+}
+
+.feature-item i {
+    color: var(--primary-color);
+    margin-right: 10px;
+    width: 20px; /* Alignement des icônes */
+    text-align: center;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 576px) {
+    .login-container {
+        padding: 25px;
+    }
+
+    .logo-section .title {
+        font-size: 2rem;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
